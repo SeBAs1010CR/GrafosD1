@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"/Users/sazofeifa/Documents/monogame/monogame/Content/../../../../Downloads/DefaultFont.png","/Users/sazofeifa/Documents/monogame/monogame/Content/bin/DesktopGL/Content/DefaultFont.xnb","TextureProcessor","Texture2DContent",102,228885,0,062422
+"/Users/sazofeifa/Documents/monogame/monogame/Content/DefaultFont.spritefont","/Users/sazofeifa/Documents/monogame/monogame/Content/bin/DesktopGL/Content/DefaultFont.xnb","FontDescriptionProcessor","SpriteFontContent",465,37913,0,036804

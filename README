@@ -1,0 +1,9 @@
+Se debe instalar la extension Monogame, se ejecuta Program, en App esta todo lo relacionado a Interfaz.
+
+Para mgcb
+
+dotnet tool install -g dotnet-mgcb-editor
+dotnet tool install -g dotnet-mgcb-editor-linux
+dotnet tool install -g dotnet-mgcb
+
+export PATH="$PATH:/Users/$(whoami)/.dotnet/tools"
