@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>/Users/sazofeifa/Documents/monogame/monogame/Content/../../../../Downloads/worldmap.png</SourceFile>
-  <SourceTime>2025-11-07T22:34:27.459613-06:00</SourceTime>
-  <DestFile>/Users/sazofeifa/Documents/monogame/monogame/Content/bin/DesktopGL/worldmap.xnb</DestFile>
-  <DestTime>2025-11-07T22:49:20.7205837-06:00</DestTime>
+  <SourceFile>/Users/sazofeifa/Documents/monogame/monogame/Content/mapamundi.png</SourceFile>
+  <SourceTime>2025-11-15T14:59:34.3178863-06:00</SourceTime>
+  <DestFile>/Users/sazofeifa/Documents/monogame/monogame/Content/bin/DesktopGL/mapamundi.xnb</DestFile>
+  <DestTime>2025-11-15T15:01:43.9691326-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2025-10-20T08:25:32-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -4,15 +4,13 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/Users/sazofeifa/Documents/monogame/monogame/Content/../../../../Downloads/DefaultFont.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/monogame/Content/../../../../Downloads/defaultPhoto.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/monogame/Content/../../../../Downloads/worldmap.png</File>
     <File>/Users/sazofeifa/Documents/monogame/monogame/Content/DefaultFont.spritefont</File>
+    <File>/Users/sazofeifa/Documents/monogame/monogame/Content/defaultPhoto.png</File>
+    <File>/Users/sazofeifa/Documents/monogame/monogame/Content/mapamundi.png</File>
   </SourceFiles>
   <DestFiles>
-    <File>DefaultFont.png</File>
-    <File>defaultPhoto.png</File>
-    <File>worldmap.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

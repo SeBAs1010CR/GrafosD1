@@ -28,6 +28,9 @@ namespace Proyecto
 
         protected override void Initialize()
         {
+            _graphics.PreferredBackBufferWidth = 1400;  // Ancho deseado
+            _graphics.PreferredBackBufferHeight = 700;  // Alto deseado
+            _graphics.ApplyChanges();
             _grafo = new GrafoResidencias();
             _ui = new UIManager();
             base.Initialize();
@@ -38,7 +41,7 @@ namespace Proyecto
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // 🗺️ Mapa de fondo
-            _mapTexture = Content.Load<Texture2D>("worldmap");
+            _mapTexture = Content.Load<Texture2D>("mapamundi");
 
             // 🔤 Fuente
             _font = Content.Load<SpriteFont>("DefaultFont"); // asegúrate que existe DefaultFont.spritefont
@@ -75,7 +78,7 @@ namespace Proyecto
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
             _spriteBatch.Begin();
 

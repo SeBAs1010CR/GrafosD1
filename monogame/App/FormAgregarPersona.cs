@@ -99,7 +99,7 @@ namespace ProyectoUI
 
             
             // Panel principal
-            sb.Draw(_panelTex, new Rectangle(200, 100, 600, 400), Color.White);
+            sb.Draw(_panelTex, new Rectangle(200, 100, 700, 400), Color.White);
 
             // Campos
             string[] etiquetas = { "Nombre", "Cedula", "Fecha Nac (YYYY-MM-DD)", "Latitud", "Longitud" };
@@ -113,7 +113,7 @@ namespace ProyectoUI
                 sb.DrawString(_font, valores[i], new Vector2(430, y), Color.Black);
             }
 
-            sb.DrawString(_font, "Presione ENTER para guardar o ESC para cancelar", new Vector2(230, 380), Color.Yellow);
+            sb.DrawString(_font, "Presione ENTER para guardar o ESC para cancelar", new Vector2(230, 450), Color.Yellow);
             
         }
 

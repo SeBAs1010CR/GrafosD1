@@ -24,8 +24,8 @@ namespace Proyecto
             DefaultPhoto = content.Load<Texture2D>("defaultPhoto");
 
             // Posiciones de los botones
-            _btnAgregar = new Rectangle(20, 20, 120, 40);
-            _btnEliminar = new Rectangle(160, 20, 120, 40);
+            _btnAgregar = new Rectangle(1200, 20, 150, 40);
+            _btnEliminar = new Rectangle(1200, 80, 150, 40);
         }
 
         public void Update(GameTime gameTime, GrafoResidencias grafo)
