@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
+
 
 namespace Proyecto.Models
 {
@@ -14,10 +16,13 @@ namespace Proyecto.Models
         public double Latitud { set; get; }
         public double Longitud { set; get; }
         public string FotoPath { set; get; }
+        public Persona Madre { set; get; }
+        public Persona Padre { set; get; }
+        public Vector2 Position { get; set; }
+
         
         // RELACIONES FAMILIARES (nuevo q hice, atte: dilan)
-        public Persona Padre { get; set; }
-        public Persona Madre { get; set; }
+        
         public List<Persona> Hijos { get; set; } = new List<Persona>();
         public Persona Pareja { get; set; }
 
@@ -35,6 +40,8 @@ namespace Proyecto.Models
             Latitud = lat;
             Longitud = lon;
             FotoPath = fotoPath;
+            Madre = madre;
+            Padre = padre;
         }
 
         // MÉTODOS PARA VALIDACIONES FAMILIARES

@@ -1,4 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"/Users/sazofeifa/Documents/monogame/monogame/Content/DefaultFont.spritefont","/Users/sazofeifa/Documents/monogame/monogame/Content/bin/DesktopGL/DefaultFont.xnb","FontDescriptionProcessor","SpriteFontContent",465,37913,0,076201
-"/Users/sazofeifa/Documents/monogame/monogame/Content/defaultPhoto.png","/Users/sazofeifa/Documents/monogame/monogame/Content/bin/DesktopGL/defaultPhoto.xnb","TextureProcessor","Texture2DContent",3814,2560085,0,044841
-"/Users/sazofeifa/Documents/monogame/monogame/Content/mapamundi.png","/Users/sazofeifa/Documents/monogame/monogame/Content/bin/DesktopGL/mapamundi.xnb","TextureProcessor","Texture2DContent",109555,3686485,0,046769
+"/Users/sazofeifa/Documents/monogame/monogame/Content/DefaultFont.spritefont","/Users/sazofeifa/Documents/monogame/monogame/Content/bin/DesktopGL/DefaultFont.xnb","FontDescriptionProcessor","SpriteFontContent",1034,37913,0,07924
+"/Users/sazofeifa/Documents/monogame/monogame/Content/defaultPhoto.png","/Users/sazofeifa/Documents/monogame/monogame/Content/bin/DesktopGL/defaultPhoto.xnb","TextureProcessor","Texture2DContent",3814,2560085,0,047352
+"/Users/sazofeifa/Documents/monogame/monogame/Content/mapamundi.png","/Users/sazofeifa/Documents/monogame/monogame/Content/bin/DesktopGL/mapamundi.xnb","TextureProcessor","Texture2DContent",109555,3686485,0,040601

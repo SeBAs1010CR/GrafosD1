@@ -11,6 +11,8 @@ namespace Proyecto
         private Texture2D _buttonTexture;
         private Rectangle _btnAgregar, _btnEliminar;
         private MouseState _prevMouse;
+        private bool verArbol = false;
+        private Rectangle botonToggle = new Rectangle(20, 10, 140, 30);
 
         public Texture2D DefaultPhoto { get; private set; }
 
@@ -45,7 +47,10 @@ namespace Proyecto
                         rnd.Next(1000, 9999).ToString(),
                         new System.DateTime(1990 + rnd.Next(20), rnd.Next(1, 12), rnd.Next(1, 28)),
                         rnd.Next(-90, 90),
-                        rnd.Next(-180, 180)
+                        rnd.Next(-180, 180),
+                        null,
+
+                        null
                     );
                     grafo.AgregarNodo(persona);
                     System.Console.WriteLine($"Persona agregada: {persona.Nombre}");
@@ -70,6 +75,11 @@ namespace Proyecto
             // Botón Eliminar
             spriteBatch.Draw(_buttonTexture, _btnEliminar, Color.LightGray);
             spriteBatch.DrawString(font, "Eliminar", new Vector2(_btnEliminar.X + 20, _btnEliminar.Y + 10), Color.Black);
+            spriteBatch.Draw(_buttonTexture, botonToggle, Color.DarkGray);
+            spriteBatch.DrawString(font, verArbol ? "Ver Mapa" : "Ver Arbol", 
+                new Vector2(30, 15), Color.Black);
         }
+
+        
     }
 }

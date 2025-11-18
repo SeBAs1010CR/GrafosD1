@@ -14,3 +14,31 @@
     </CharacterRegions>
   </Asset>
 </XnaContent>
+<CharacterRegions>
+  <CharacterRegion>
+    <Start>&#32;</Start>
+    <End>&#255;</End>
+  </CharacterRegion>
+</CharacterRegions>
+<CharacterRegions>
+  <CharacterRegion>
+    <Start> </Start>
+    <End>~</End>
+  </CharacterRegion>
+  <CharacterRegion>
+    <Start>á</Start>
+    <End>ú</End>
+  </CharacterRegion>
+  <CharacterRegion>
+    <Start>Á</Start>
+    <End>Ú</End>
+  </CharacterRegion>
+  <CharacterRegion>
+    <Start>ñ</Start>
+    <End>ñ</End>
+  </CharacterRegion>
+  <CharacterRegion>
+    <Start>Ñ</Start>
+    <End>Ñ</End>
+  </CharacterRegion>
+</CharacterRegions>
