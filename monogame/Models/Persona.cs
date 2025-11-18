@@ -1,13 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
-
 
 namespace Proyecto.Models
 {
-
-
     public class Persona
     {
         public Guid id { set; get; } = Guid.NewGuid();
@@ -18,9 +14,19 @@ namespace Proyecto.Models
         public double Latitud { set; get; }
         public double Longitud { set; get; }
         public string FotoPath { set; get; }
+        
+        // RELACIONES FAMILIARES (nuevo q hice, atte: dilan)
+        public Persona Padre { get; set; }
+        public Persona Madre { get; set; }
+        public List<Persona> Hijos { get; set; } = new List<Persona>();
+        public Persona Pareja { get; set; }
+
         public int Edad =>
             (FechaDefuncion ?? DateTime.Now).Year - FechaNacimiento.Year -
             ((FechaDefuncion ?? DateTime.Now).DayOfYear < FechaNacimiento.DayOfYear ? 1 : 0);
+
+        public bool EstaVivo => FechaDefuncion == null;
+
         public Persona(string nombre, string cedula, DateTime fechaNacimiento, double lat, double lon, string fotoPath = null)
         {
             Nombre = nombre;
@@ -29,6 +35,23 @@ namespace Proyecto.Models
             Latitud = lat;
             Longitud = lon;
             FotoPath = fotoPath;
+        }
+
+        // MÉTODOS PARA VALIDACIONES FAMILIARES
+        public bool EsAscendienteDe(Persona posibleDescendiente)
+        {
+            if (posibleDescendiente == null) return false;
+            
+            // Verificar si esta persona es padre/madRE o ascendiente
+            return posibleDescendiente.Padre == this || 
+                   posibleDescendiente.Madre == this ||
+                   (posibleDescendiente.Padre != null && EsAscendienteDe(posibleDescendiente.Padre)) ||
+                   (posibleDescendiente.Madre != null && EsAscendienteDe(posibleDescendiente.Madre));
+        }
+
+        public bool EsDescendienteDe(Persona posibleAscendiente)
+        {
+            return posibleAscendiente?.EsAscendienteDe(this) ?? false;
         }
     }
 }
