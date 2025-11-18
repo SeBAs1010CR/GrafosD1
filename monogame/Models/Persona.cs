@@ -14,7 +14,7 @@ namespace Proyecto.Models
         public double Latitud { set; get; }
         public double Longitud { set; get; }
         public string FotoPath { set; get; }
-        
+        public Vector2 Position { get; set; }
         // RELACIONES FAMILIARES
         public Persona Madre { set; get; }
         public Persona Padre { set; get; }
