@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Linq;
 using System.Dynamic;
 
+
 namespace Proyecto.Models
 {
     public class Persona
@@ -16,12 +17,8 @@ namespace Proyecto.Models
         public double Latitud { set; get; }
         public double Longitud { set; get; }
         public string FotoPath { set; get; }
-        public Persona Madre { set; get; }
-        public Persona Padre { set; get; }
         public Vector2 Position { get; set; }
-
-        
-        // RELACIONES FAMILIARES (nuevo q hice, atte: dilan)
+        // RELACIONES FAMILIARES (NUEVO)
         public Persona Padre { get; set; }
         public Persona Madre { get; set; }
         public List<Persona> Hijos { get; set; } = new List<Persona>();
@@ -34,7 +31,6 @@ namespace Proyecto.Models
         public bool EstaVivo => FechaDefuncion == null;
 
         public Persona(string nombre, string cedula, DateTime fechaNacimiento, double lat, double lon, string fotoPath = null)
-        public Persona(string nombre, string cedula, DateTime fechaNacimiento, double lat, double lon, Persona madre, Persona padre, string fotoPath = null)
         {
             Nombre = nombre;
             Cedula = cedula;
