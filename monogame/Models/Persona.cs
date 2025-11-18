@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using System.Linq;
-
+using System.Dynamic;
 
 namespace Proyecto.Models
 {
@@ -22,7 +22,8 @@ namespace Proyecto.Models
 
         
         // RELACIONES FAMILIARES (nuevo q hice, atte: dilan)
-        
+        public Persona Padre { get; set; }
+        public Persona Madre { get; set; }
         public List<Persona> Hijos { get; set; } = new List<Persona>();
         public Persona Pareja { get; set; }
 
@@ -33,6 +34,7 @@ namespace Proyecto.Models
         public bool EstaVivo => FechaDefuncion == null;
 
         public Persona(string nombre, string cedula, DateTime fechaNacimiento, double lat, double lon, string fotoPath = null)
+        public Persona(string nombre, string cedula, DateTime fechaNacimiento, double lat, double lon, Persona madre, Persona padre, string fotoPath = null)
         {
             Nombre = nombre;
             Cedula = cedula;
