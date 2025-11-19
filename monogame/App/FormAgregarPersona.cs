@@ -111,14 +111,16 @@ namespace ProyectoUI
                 {
                     var madreObj = _grafo.BuscarPorNombre(nombremadre); // método por agregar
                     var padreObj = _grafo.BuscarPorNombre(nombrepadre);
+                   // FORMA CORRECTA - usando parámetros nombrados
                     var persona = new Persona(
-                        nombre,
-                        cedula,
-                        DateTime.Parse(fechaNac),
-                        double.Parse(latitud),
-                        double.Parse(longitud),
-                        madreObj,
-                        padreObj
+                        nombre: nombre,
+                        cedula: cedula,
+                        fechaNacimiento: DateTime.Parse(fechaNac),
+                        lat: double.Parse(latitud),
+                        lon: double.Parse(longitud),
+                        fotoPath: null,  // o tu ruta de foto si tienes
+                        madre: madreObj,
+                        padre: padreObj
                     );
                     OnGuardar?.Invoke(persona);
                     Ocultar();
