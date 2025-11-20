@@ -30,7 +30,7 @@ namespace Proyecto
             _btnEliminar = new Rectangle(1200, 80, 150, 40);
         }
 
-        public void Update(GameTime gameTime, GrafoResidencias grafo)
+        public void Update(GameTime gameTime, GrafoPersonas grafo)
         {
             var mouse = Mouse.GetState();
             var mousePos = new Point(mouse.X, mouse.Y);

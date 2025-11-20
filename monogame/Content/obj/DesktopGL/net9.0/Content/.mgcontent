@@ -4,9 +4,9 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/Users/sazofeifa/Documents/monogame/monogame/Content/DefaultFont.spritefont</File>
-    <File>/Users/sazofeifa/Documents/monogame/monogame/Content/defaultPhoto.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/monogame/Content/mapamundi.png</File>
+    <File>C:/Users/garia/source/repos/GrafosD1/monogame/Content/DefaultFont.spritefont</File>
+    <File>C:/Users/garia/source/repos/GrafosD1/monogame/Content/defaultPhoto.png</File>
+    <File>C:/Users/garia/source/repos/GrafosD1/monogame/Content/mapamundi.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

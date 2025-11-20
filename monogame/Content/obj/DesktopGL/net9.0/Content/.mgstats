@@ -1,1 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/garia/source/repos/GrafosD1/monogame/Content/DefaultFont.spritefont","C:/Users/garia/source/repos/GrafosD1/monogame/Content/bin/DesktopGL/Content/DefaultFont.xnb","FontDescriptionProcessor","SpriteFontContent",1078,37913,0.2149016
+"C:/Users/garia/source/repos/GrafosD1/monogame/Content/defaultPhoto.png","C:/Users/garia/source/repos/GrafosD1/monogame/Content/bin/DesktopGL/Content/defaultPhoto.xnb","TextureProcessor","Texture2DContent",3814,2560085,0.0747362
+"C:/Users/garia/source/repos/GrafosD1/monogame/Content/mapamundi.png","C:/Users/garia/source/repos/GrafosD1/monogame/Content/bin/DesktopGL/Content/mapamundi.xnb","TextureProcessor","Texture2DContent",109555,3686485,0.1524319
