@@ -1,0 +1,70 @@
+############################
+# .NET & C# BUILD FILES
+############################
+
+bin/
+obj/
+Debug/
+Release/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.mdb
+*.log
+*.ilk
+*.tmp
+*.tmp_proj
+
+############################
+# VS / VSCode FILES
+############################
+
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+############################
+# MonoGame SPECIFIC
+############################
+
+# MGCB intermediate & output
+*.mgcb
+Content/bin/
+Content/obj/
+*/bin/
+*/obj/
+
+# MonoGame generated cache
+*.xnb
+
+############################
+# OS FILES
+############################
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+############################
+# GIT FILES
+############################
+
+*.orig
+
+############################
+# IDE BACKUPS
+############################
+
+*.bak
+*.old
+*.backup

@@ -23,7 +23,7 @@ namespace Proyecto
         private SpriteFont _font;
 
         private UIManager _ui;
-        private GrafoResidencias _grafo;
+        private GrafoPersonas _grafo;
         private FormAgregarPersona _form;
         private bool verArbol = false;
         private Rectangle botonToggle = new Rectangle(20, 10, 140, 30);
@@ -41,7 +41,7 @@ namespace Proyecto
             _graphics.PreferredBackBufferWidth = 1400;  // Ancho deseado
             _graphics.PreferredBackBufferHeight = 700;  // Alto deseado
             _graphics.ApplyChanges();
-            _grafo = new GrafoResidencias();
+            _grafo = new GrafoPersonas();
             _ui = new UIManager();
             base.Initialize();
         }

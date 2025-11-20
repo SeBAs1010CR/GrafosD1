@@ -12,7 +12,7 @@ namespace ProyectoUI
         private SpriteFont _font;
         private Texture2D _panelTex, _inputTex;
         private KeyboardState _prevKeyboard;
-        private GrafoResidencias _grafo; 
+        private GrafoPersonas _grafo; 
 
         private string nombre = "";
         private string cedula = "";
@@ -27,7 +27,7 @@ namespace ProyectoUI
 
         public Action<Persona> OnGuardar; // callback al guardar
 
-        public FormAgregarPersona(GrafoResidencias grafo)
+        public FormAgregarPersona(GrafoPersonas grafo)
         {
             _grafo = grafo;
         }
