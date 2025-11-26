@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/DefaultFont.spritefont","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/Content/DefaultFont.xnb","FontDescriptionProcessor","SpriteFontContent",1034,37913,0.08708
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/defaultPhoto.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/Content/defaultPhoto.xnb","TextureProcessor","Texture2DContent",3814,2560085,0.062189
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/mapamundi.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/Content/mapamundi.xnb","TextureProcessor","Texture2DContent",109555,3686485,0.042062
