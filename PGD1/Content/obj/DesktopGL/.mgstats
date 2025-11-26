@@ -1,0 +1,13 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/AV1.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/AV1.xnb","TextureProcessor","Texture2DContent",84668,605045,0,066194
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/AV2.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/AV2.xnb","TextureProcessor","Texture2DContent",104270,620629,0,009163
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/AV3.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/AV3.xnb","TextureProcessor","Texture2DContent",79131,607909,0,009144
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/AV4.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/AV4.xnb","TextureProcessor","Texture2DContent",99535,580693,0,007205
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/AV5.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/AV5.xnb","TextureProcessor","Texture2DContent",90923,629621,0,009475
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/AV6.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/AV6.xnb","TextureProcessor","Texture2DContent",87389,621029,0,00918
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/AV7.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/AV7.xnb","TextureProcessor","Texture2DContent",82986,626565,0,009829
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/AV8.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/AV8.xnb","TextureProcessor","Texture2DContent",80542,626325,0,00844
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/AV9.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/AV9.xnb","TextureProcessor","Texture2DContent",88621,664917,0,010283
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/DefaultFont.spritefont","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/DefaultFont.xnb","FontDescriptionProcessor","SpriteFontContent",1034,37913,0,032298
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/defaultPhoto.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/defaultPhoto.xnb","TextureProcessor","Texture2DContent",3814,2560085,0,030293
+"/Users/sazofeifa/Documents/monogame/PGD1/Content/mapamundi.png","/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/mapamundi.xnb","TextureProcessor","Texture2DContent",109555,3686485,0,041166
