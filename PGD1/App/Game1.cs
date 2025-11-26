@@ -5,6 +5,8 @@ using Proyecto.Models;
 using ProyectoUI; // donde está FormAgregarPersona
 using System;
 using System.Collections.Generic;
+using PGD1.Models;
+
 
 
 namespace Proyecto
@@ -26,7 +28,10 @@ namespace Proyecto
         private GrafoResidencias _grafo;
         private FormAgregarPersona _form;
         private bool verArbol = false;
+        private Texture2D[] _avatars;
+        private AvatarSelector _selector;
         
+      
 
 
         public Game1()
@@ -89,10 +94,19 @@ namespace Proyecto
             _pixelTexture.SetData(new[] { Color.White });
             // 🧭 Interfaz de usuario
             _ui.LoadContent(Content, GraphicsDevice);
+            _avatars = new Texture2D[9];
+            for (int i = 0; i < 9; i++)
+            {
+                _avatars[i] = Content.Load<Texture2D>($"AV{i + 1}");
+            }
 
+            // 2. Crear selector
+            _selector = new AvatarSelector();
+            _selector.LoadContent(GraphicsDevice, _font, name => Content.Load<Texture2D>(name));
             // 🧍 Formulario CRUD
-            _form = new FormAgregarPersona(_grafo);
+            _form = new FormAgregarPersona(_grafo, _avatars);
             _form.LoadContent(GraphicsDevice, _font);
+            _form.SetSelector(_selector);
             _form.OnGuardar = (persona) =>
             {
                 _grafo.AgregarNodo(persona);
@@ -106,7 +120,6 @@ namespace Proyecto
                 verArbol = !verArbol;   
             };
 
-            
 
 
         }
@@ -122,8 +135,11 @@ namespace Proyecto
                 _form.Mostrar();
 
             // Actualizar formulario y UI
+            _selector.Update();
             _form.Update(gameTime);
             _ui.Update(gameTime, _grafo);
+            
+
 
             base.Update(gameTime);
         }
@@ -149,12 +165,16 @@ namespace Proyecto
             _ui.Draw(_spriteBatch, _font);
 
             _form.Draw(_spriteBatch, GraphicsDevice);
+            _selector.Draw(_spriteBatch);
+
+        
+
             
 
             if (verArbol)
             {
                 // Lienzo
-                _spriteBatch.Draw(_blackCanvas, new Rectangle(550, 0, 740, 720), Color.Black);
+                _spriteBatch.Draw(_blackCanvas, new Rectangle(550, 0, 740, 800), Color.Black);
 
                 DrawArbolGenealogico(_spriteBatch);
             }

@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using Proyecto.Models;
+using PGD1.Models;
+
 
 namespace ProyectoUI
 {
@@ -21,15 +23,32 @@ namespace ProyectoUI
         private string longitud = "";
         private string nombremadre = "";
         private string nombrepadre = "";
+        private string nombrePareja = "";
 
         private int campoActivo = 0; // 0=nombre, 1=cedula, 2=fecha, 3=lat, 4=lon 5=madre, 6=padre
         private bool visible = false;
-
+        private AvatarSelector _selector;
+        private Texture2D[] _avatars; 
+        private string avatarSeleccionado = "AV1"; // default
+        private Texture2D _avatarPreview;
         public Action<Persona> OnGuardar; // callback al guardar
 
-        public FormAgregarPersona(GrafoResidencias grafo)
+        public FormAgregarPersona(GrafoResidencias grafo,  Texture2D[] avatars)
         {
             _grafo = grafo;
+            _avatars = avatars;
+            _avatarPreview = avatars[0]; 
+        }
+        private bool _mostrandoSelectorAvatar = false;
+
+        private void MostrarSelectorDeAvatar()
+        {
+            _mostrandoSelectorAvatar = true;
+        }
+
+        private void OcultarSelectorDeAvatar()
+        {
+            _mostrandoSelectorAvatar = false;
         }
 
         public void LoadContent(GraphicsDevice gd, SpriteFont font)
@@ -52,7 +71,7 @@ namespace ProyectoUI
 
             // Cambiar campo activo con Tab
             if (kb.IsKeyDown(Keys.Tab) && _prevKeyboard.IsKeyUp(Keys.Tab))
-                campoActivo = (campoActivo + 1) % 7;
+                campoActivo = (campoActivo + 1) % 8;
 
             // Escribir texto en el campo activo
             foreach (var key in kb.GetPressedKeys())
@@ -84,6 +103,9 @@ namespace ProyectoUI
                             case 6:
                                 if (nombrepadre.Length > 0) nombrepadre = nombrepadre[..^1];
                                 break;
+                            case 7: 
+                                if (nombrePareja.Length > 0) nombrePareja = nombrePareja[..^1]; break;
+
                         }
                     }
                     char c = KeyToChar(key);
@@ -99,6 +121,7 @@ namespace ProyectoUI
                             case 4: longitud += c; break;
                             case 5: nombremadre += c; break;
                             case 6: nombrepadre += c; break;
+                            case 7: nombrePareja += c; break;
                         }
                     }
                 }
@@ -111,6 +134,9 @@ namespace ProyectoUI
                 {
                     var madreObj = _grafo.BuscarPorNombre(nombremadre); // método por agregar
                     var padreObj = _grafo.BuscarPorNombre(nombrepadre);
+                    var parejaObj = _grafo.BuscarPorNombre(nombrePareja);
+    
+
                    // FORMA CORRECTA - usando parámetros nombrados
                     var persona = new Persona(
                         nombre: nombre,
@@ -121,13 +147,30 @@ namespace ProyectoUI
                         fotoPath: null,  // o tu ruta de foto si tienes
                         madre: madreObj,
                         padre: padreObj
+                        
                     );
+                    // Establecer pareja
+                    persona.Pareja = parejaObj;
+                    if (parejaObj != null)
+                        parejaObj.Pareja = persona;
+
                     OnGuardar?.Invoke(persona);
                     Ocultar();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+            var mouse = Mouse.GetState();
+
+            if (mouse.LeftButton == ButtonState.Pressed)
+            {
+                Rectangle btnAvatar = new Rectangle(180, 600, 180, 40);
+
+                if (btnAvatar.Contains(mouse.X, mouse.Y))
+                {
+                    _selector.Mostrar();
                 }
             }
 
@@ -147,8 +190,8 @@ namespace ProyectoUI
             
 
             // Campos
-            string[] etiquetas = { "Nombre", "Cedula", "Fecha Nac (YYYY-MM-DD)", "Latitud", "Longitud", "Madre", "Padre"};
-            string[] valores = { nombre, cedula, fechaNac, latitud, longitud, nombremadre, nombrepadre };
+            string[] etiquetas = { "Nombre", "Cedula", "Fecha Nac (YYYY-MM-DD)", "Latitud", "Longitud", "Madre", "Padre", "Pereja"};
+            string[] valores = { nombre, cedula, fechaNac, latitud, longitud, nombremadre, nombrepadre, nombrePareja };
 
             for (int i = 0; i < etiquetas.Length; i++)
             {
@@ -157,8 +200,14 @@ namespace ProyectoUI
                 sb.Draw(_inputTex, new Rectangle(180, y - 5, 260, 30), i == campoActivo ? Color.White : Color.Gray);
                 sb.DrawString(_font, valores[i], new Vector2(190, y), Color.Black);
             }
+            sb.DrawString(_font, "Avatar:", new Vector2(10, 700), Color.White);
+            sb.Draw(_avatarPreview, new Rectangle(370, 600, 40, 40), Color.White);
 
-            sb.DrawString(_font, "Presione ENTER para guardar o ESC para cancelar", new Vector2(23, 550), Color.Yellow);
+            sb.Draw(_inputTex, new Rectangle(180, 600, 180, 40), Color.DarkGray);
+            sb.DrawString(_font, "Elegir Avatar", new Vector2(190, 605), Color.White);
+
+
+            sb.DrawString(_font, "ENTER (guardar) o ESC (cancelar)", new Vector2(80, 655), Color.Yellow);
             
         }
 
@@ -177,5 +226,25 @@ namespace ProyectoUI
                 return '-';
             return '\0';
         }
+        private AvatarSelector _avatarSelector;
+
+
+
+        public void SetSelector(AvatarSelector selector)
+        {
+            _selector = selector;
+
+            _selector.OnAvatarSelected = (avatarName) =>
+            {
+                avatarSeleccionado = avatarName;
+
+                // Convertir AVx → index
+                int index = int.Parse(avatarName.Replace("AV", "")) - 1;
+
+                _avatarPreview = _avatars[index];
+            };
+        }
+
+
     }
 }

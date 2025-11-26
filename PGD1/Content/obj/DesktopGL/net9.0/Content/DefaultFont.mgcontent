@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>/Users/sazofeifa/Documents/monogame/PGD1/Content/DefaultFont.spritefont</SourceFile>
-  <SourceTime>2025-11-18T00:35:00.8828932-06:00</SourceTime>
+  <SourceTime>2025-11-25T18:24:23.1084403-06:00</SourceTime>
   <DestFile>/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/Content/DefaultFont.xnb</DestFile>
-  <DestTime>2025-11-19T20:42:34.8196793-06:00</DestTime>
+  <DestTime>2025-11-25T18:51:29.6251458-06:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2025-10-20T08:25:32-06:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

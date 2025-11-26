@@ -72,3 +72,12 @@
 /Users/sazofeifa/Documents/monogame/PGD1/obj/Debug/net9.0/monogame.pdb
 /Users/sazofeifa/Documents/monogame/PGD1/obj/Debug/net9.0/monogame.genruntimeconfig.cache
 /Users/sazofeifa/Documents/monogame/PGD1/obj/Debug/net9.0/ref/monogame.dll
+/Users/sazofeifa/Documents/monogame/PGD1/bin/Debug/net9.0/Content/AV1.xnb
+/Users/sazofeifa/Documents/monogame/PGD1/bin/Debug/net9.0/Content/AV2.xnb
+/Users/sazofeifa/Documents/monogame/PGD1/bin/Debug/net9.0/Content/AV3.xnb
+/Users/sazofeifa/Documents/monogame/PGD1/bin/Debug/net9.0/Content/AV5.xnb
+/Users/sazofeifa/Documents/monogame/PGD1/bin/Debug/net9.0/Content/AV6.xnb
+/Users/sazofeifa/Documents/monogame/PGD1/bin/Debug/net9.0/Content/AV7.xnb
+/Users/sazofeifa/Documents/monogame/PGD1/bin/Debug/net9.0/Content/AV8.xnb
+/Users/sazofeifa/Documents/monogame/PGD1/bin/Debug/net9.0/Content/AV9.xnb
+/Users/sazofeifa/Documents/monogame/PGD1/bin/Debug/net9.0/Content/AV4.xnb
