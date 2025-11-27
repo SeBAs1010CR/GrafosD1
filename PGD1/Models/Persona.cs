@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 namespace Proyecto.Models
 {
     public class Persona
@@ -20,6 +21,9 @@ namespace Proyecto.Models
         public Persona Padre { set; get; }
         public List<Persona> Hijos { get; set; } = new List<Persona>();
         public Persona Pareja { get; set; }
+
+        public Texture2D Foto { get; set; }
+
 
         // PROPIEDADES CALCULADAS
         public int Edad

@@ -144,7 +144,7 @@ namespace ProyectoUI
                         fechaNacimiento: DateTime.Parse(fechaNac),
                         lat: double.Parse(latitud),
                         lon: double.Parse(longitud),
-                        fotoPath: null,  // o tu ruta de foto si tienes
+                        avatarSeleccionado, 
                         madre: madreObj,
                         padre: padreObj
                         
@@ -153,6 +153,7 @@ namespace ProyectoUI
                     persona.Pareja = parejaObj;
                     if (parejaObj != null)
                         parejaObj.Pareja = persona;
+                    persona.FotoPath = avatarSeleccionado;
 
                     OnGuardar?.Invoke(persona);
                     Ocultar();
