@@ -32,6 +32,11 @@ namespace ProyectoUI
         private string avatarSeleccionado = "AV1"; // default
         private Texture2D _avatarPreview;
         public Action<Persona> OnGuardar; // callback al guardar
+        
+
+        private bool seleccionarEnMapa = false;
+
+
 
         public FormAgregarPersona(GrafoResidencias grafo,  Texture2D[] avatars)
         {
@@ -58,6 +63,9 @@ namespace ProyectoUI
             _panelTex.SetData(new[] { new Color(0, 0, 0, 180) }); // semi-transparente
             _inputTex = new Texture2D(gd, 1, 1);
             _inputTex.SetData(new[] { Color.LightGray });
+
+
+
         }
 
         public void Mostrar() => visible = true;
@@ -173,10 +181,16 @@ namespace ProyectoUI
                 {
                     _selector.Mostrar();
                 }
+            
             }
+            
 
-            // Cancelar con Escape
-            if (kb.IsKeyDown(Keys.Escape)) Ocultar();
+
+
+
+
+            // Cancelar con C
+            if (kb.IsKeyDown(Keys.C)) Ocultar();
 
             _prevKeyboard = kb;
         }
@@ -208,7 +222,7 @@ namespace ProyectoUI
             sb.DrawString(_font, "Elegir Avatar", new Vector2(190, 605), Color.White);
 
 
-            sb.DrawString(_font, "ENTER (guardar) o ESC (cancelar)", new Vector2(80, 655), Color.Yellow);
+            sb.DrawString(_font, "ENTER (guardar) o C (cancelar)", new Vector2(80, 655), Color.Yellow);
             
         }
 
@@ -229,6 +243,11 @@ namespace ProyectoUI
         }
         private AvatarSelector _avatarSelector;
 
+        public void SetUbicacion(double lat, double lon)
+        {
+            latitud = lat.ToString();
+            longitud = lon.ToString();
+        }
 
 
         public void SetSelector(AvatarSelector selector)

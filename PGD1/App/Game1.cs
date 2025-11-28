@@ -36,10 +36,19 @@ namespace Proyecto
 
         private MouseState _prevMouse;
 
+        private bool esperandoUbicacion = false;
+        private Action<double, double> callbackUbicacion;
+        public static Game1 Instancia { get; private set; }
+
+
+        private Texture2D _infoIcon;
+        private bool mostrarInfo = false;
+        private Rectangle infoButtonRect = new Rectangle(10, 10, 30, 30);
 
 
         public Game1()
         {
+            Instancia = this;
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -84,11 +93,13 @@ namespace Proyecto
 
         protected override void LoadContent()
         {
+            
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // 🗺️ Mapa de fondo
             _mapTexture = Content.Load<Texture2D>("mapamundi");
-
+            
             // 🔤 Fuente
             _font = Content.Load<SpriteFont>("DefaultFont"); // asegúrate que existe DefaultFont.spritefont
             _circleTexture = CreateCircleTexture(GraphicsDevice, 50);
@@ -98,6 +109,7 @@ namespace Proyecto
             _pixelTexture.SetData(new[] { Color.White });
             // 🧭 Interfaz de usuario
             _ui.LoadContent(Content, GraphicsDevice);
+            _infoIcon = CreateCircleTexture(GraphicsDevice, 30);
             _avatars = new Texture2D[9];
             for (int i = 0; i < 9; i++)
             {
@@ -141,14 +153,70 @@ namespace Proyecto
 
         protected override void Update(GameTime gameTime)
         {
+
+            
+
+             if (Keyboard.GetState().IsKeyDown(Keys.F1))
+{
+            
+            ElegirUbicacion((lat, lon) =>
+            {
+                Console.WriteLine($"Ubicación seleccionada: Lat={lat}, Lon={lon}");
+                verArbol = true;    
+                _form.Mostrar(); 
+                _form.SetUbicacion(lat, lon);
+                
+                
+            });
+            
+
+            _form.Ocultar();
+            verArbol = false;
+            Console.WriteLine("Modo seleccionar ubicación activado. Haga clic en el mapa.");
+}
+
+
+            if (esperandoUbicacion)
+            {
+                var mouseUb = Mouse.GetState();
+
+                if (mouseUb.LeftButton == ButtonState.Pressed)
+                {
+                    // Coordenadas del mouse
+                    Vector2 posMapa = mouseUb.Position.ToVector2();
+
+                    double lon = (posMapa.X / 1280f) * 360 - 180;
+                    double lat = 90 - (posMapa.Y / 720f) * 180;
+
+                    esperandoUbicacion = false;
+                    callbackUbicacion?.Invoke(lat, lon);
+                    callbackUbicacion = null;
+                }
+
+                base.Update(gameTime);
+                return;
+            }
             // Salir del juego
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // Mostrar formulario con tecla N
-            if (Keyboard.GetState().IsKeyDown(Keys.N))
+            // Mostrar formulario con tecla F2
+            if (Keyboard.GetState().IsKeyDown(Keys.F2))
                 _form.Mostrar();
+            // Alternar árbol genealógico con coma (,)
+            if (Keyboard.GetState().IsKeyDown(Keys.OemComma))
+            {
+                verArbol = true;
+                _form.Mostrar();
+            }
 
+            if (Keyboard.GetState().IsKeyDown(Keys.OemPeriod))
+            {
+                verArbol = false;  
+                _form.Ocultar();   
+            }
+
+           
             // Actualizar formulario y UI
             _selector.Update();
             _form.Update(gameTime);
@@ -156,10 +224,18 @@ namespace Proyecto
             
             var mouse = Mouse.GetState();
             Point mousePos = mouse.Position;
+            if (mouse.LeftButton == ButtonState.Pressed && 
+                _prevMouse.LeftButton == ButtonState.Released)
+            {
+                if (infoButtonRect.Contains(mouse.Position))
+                {
+                    mostrarInfo = !mostrarInfo;
+                }
+            }
 
             // Reiniciar hover
             personaHover = null;
-
+            
             // Detectar hover y click
             foreach (var persona in _grafo.ListarPersonas())
             {
@@ -180,6 +256,9 @@ namespace Proyecto
                     personaSeleccionada = persona;
                     Console.WriteLine($"Seleccionado: {persona.Nombre}");
                 }
+            
+
+
             }
 
             _prevMouse = mouse;
@@ -226,12 +305,13 @@ namespace Proyecto
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
 
             // 🗺️ Dibuja el mapa
-            _spriteBatch.Draw(_mapTexture, new Rectangle(0, 0, 1280, 720), Color.White);
+            _spriteBatch.Draw(_mapTexture, new Rectangle(0, 0, 1280, 720), Color.Black);
+            
             DrawArbolGenealogico(_spriteBatch);
             // 👥 Dibuja las personas del grafo
             foreach (var persona in _grafo.ListarPersonas())
@@ -248,6 +328,7 @@ namespace Proyecto
             _selector.Draw(_spriteBatch);
 
         
+            
 
             
 
@@ -269,13 +350,33 @@ namespace Proyecto
                 // Dibujas mapa normal
                 _spriteBatch.Draw(_mapTexture, new Rectangle(0, 0, 1280, 720), Color.White);
 
-                // Dibuja personas en el mapa
-                foreach (var persona in _grafo.ListarPersonas())
-                {
-                    Vector2 pos = ConvertirCoordenadas(persona.Latitud, persona.Longitud);
-                    _spriteBatch.Draw(persona.Foto, new Rectangle((int)pos.X, (int)pos.Y, 40, 40), Color.White);
-                    _spriteBatch.DrawString(_font, persona.Nombre, pos + new Vector2(0, 45), Color.Black);
-                }
+                // Botón "i" de información
+            _spriteBatch.Draw(_infoIcon, infoButtonRect, Color.CornflowerBlue);
+
+            // Dibujar la "i" encima (si usaste CreateCircleTexture)
+            _spriteBatch.DrawString(
+                _font,
+                "i",
+                new Vector2(infoButtonRect.X + 10, infoButtonRect.Y + 5),
+                Color.White
+            );
+            if (mostrarInfo)
+            {
+                Rectangle panel = new Rectangle(50, 50, 600, 250);
+
+                // Fondo semitransparente
+                _spriteBatch.Draw(_blackCanvas, panel, Color.Black * 0.7f);
+
+                string texto =
+                    "CONTROLES\n\n" +
+                    "F1  - Seleccionar ubicacion en mapa\n" +
+                    ", .  - Mostrar/ocultar arbol genealogico\n" +
+                    "ESC - Salir\n\n" +
+                    "Haga clic sobre una persona para ver distancias";
+
+                _spriteBatch.DrawString(_font, texto, new Vector2(70, 70), Color.White);
+            }
+                
                 if (personaHover != null)
                 {
                     DrawInfoBox(_spriteBatch, personaHover);
@@ -296,7 +397,7 @@ namespace Proyecto
                             _spriteBatch,
                             origen,
                             destinoPos,
-                            Color.Cyan,
+                            Color.White,
                             3f
                         );
 
@@ -311,6 +412,24 @@ namespace Proyecto
                         );
                     }
                 }
+                // Dibuja personas en el mapa
+                foreach (var persona in _grafo.ListarPersonas())
+                {
+                    Vector2 pos = ConvertirCoordenadas(persona.Latitud, persona.Longitud);
+                    _spriteBatch.Draw(persona.Foto, new Rectangle((int)pos.X, (int)pos.Y, 40, 40), Color.White);
+                    _spriteBatch.DrawString(_font, persona.Nombre, pos + new Vector2(0, 45), Color.Black);
+                }
+                if (esperandoUbicacion)
+                {
+                    _spriteBatch.DrawString(_font, 
+                        "Haga clic en el mapa para seleccionar la ubicacion...",
+                        new Vector2(400, 20),
+                        Color.Yellow);
+
+                    _spriteBatch.End();
+                    return; // para que no dibuje avatares encima
+                }
+
 
 
             }
@@ -376,7 +495,11 @@ namespace Proyecto
 
             }
         }
-
+        public void ElegirUbicacion(Action<double, double> callback)
+        {
+            esperandoUbicacion = true;
+            callbackUbicacion = callback;
+        }
         private void DrawNameTag(SpriteBatch sb, string nombre, Vector2 posicion, int ancho)
         {
             // Altura fija del recuadro
