@@ -78,58 +78,17 @@ namespace Proyecto
 
         public void LoadContent(ContentManager content, GraphicsDevice graphicsDevice)
         {
-            _buttonTexture = new Texture2D(graphicsDevice, 1, 1);
-            _buttonTexture.SetData(new[] { Color.White });
+            
 
             DefaultPhoto = content.Load<Texture2D>("defaultPhoto");
 
-            int y = 20;
+            
 
-            _btnAgregar = new Rectangle(
-                BUTTON_X,
-                y,
-                BUTTON_WIDTH,
-                BUTTON_HEIGHT
-            );
-
-            y += BUTTON_HEIGHT + BUTTON_SPACING;
-
-            _btnEliminar = new Rectangle(
-                BUTTON_X,
-                y,
-                BUTTON_WIDTH,
-                BUTTON_HEIGHT
-            );
-
-            y += BUTTON_HEIGHT + BUTTON_SPACING;
-
-            _btnAlternar = new Rectangle(
-                BUTTON_X,
-                y,
-                BUTTON_WIDTH,
-                BUTTON_HEIGHT
-            );
+           
         }
         public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
-            // Agregar
-            spriteBatch.Draw(_buttonTexture, _btnAgregar, Color.LightGray);
-            spriteBatch.DrawString(font, "Agregar",
-                new Vector2(_btnAgregar.X + 20, _btnAgregar.Y + 10),
-                Color.Black);
-
-            // Eliminar
-            spriteBatch.Draw(_buttonTexture, _btnEliminar, Color.LightGray);
-            spriteBatch.DrawString(font, "Eliminar",
-                new Vector2(_btnEliminar.X + 20, _btnEliminar.Y + 10),
-                Color.Black);
-
-            // Alternar (árbol / mapa)
-            spriteBatch.Draw(_buttonTexture, _btnAlternar, Color.DarkGray);
-            spriteBatch.DrawString(font,
-                "Alternar",
-                new Vector2(_btnAlternar.X + 20, _btnAlternar.Y + 10),
-                Color.Black);
+            
         }
 
         

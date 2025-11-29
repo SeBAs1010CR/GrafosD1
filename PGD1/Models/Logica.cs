@@ -48,23 +48,22 @@ namespace Proyecto.Models
 
             // 2. Agrupar por nivel
             var grupos = niveles
-                .GroupBy(kv => kv.Value)      // agrupa por nivel
-                .OrderBy(g => g.Key)          // ordena de nivel 0 hacia abajo
+                .GroupBy(kv => kv.Value)
+                .OrderBy(g => g.Key)
                 .ToList();
 
-            // 3. Parámetros del área de dibujo (panel derecho)
-            float inicioX =300f;   // margen izquierdo del panel del árbol
+            // 3. Parámetros del layout
+            float inicioX = 300f;
             float anchoPanel = 650f;
             float inicioY = 80f;
             float alturaNivel = 120f;
 
+            // 4. Posicionar las personas por nivel
             foreach (var grupo in grupos)
             {
                 int nivel = grupo.Key;
                 var personasEnNivel = grupo.Select(kv => kv.Key).ToList();
                 int count = personasEnNivel.Count;
-
-                if (count == 0) continue;
 
                 float espacio = (anchoPanel - 100) / Math.Max(count, 1);
 
@@ -79,7 +78,19 @@ namespace Proyecto.Models
                 }
             }
 
+            // 5.POSICIONAR PAREJAS
+            foreach (var p in personas)
+            {
+                if (p.Pareja != null)
+                {
+                    p.Pareja.Position = new Vector2(
+                        p.Position.X + 80,  // distancia horizontal
+                        p.Position.Y        // misma altura, mismo nivel
+                    );
+                }
+            }
         }
+
 
 
         public void Conectar(Persona a, Persona b)
@@ -101,6 +112,99 @@ namespace Proyecto.Models
                          Math.Sin(dLon / 2) * Math.Sin(dLon / 2) * Math.Cos(lat1) * Math.Cos(lat2);
             return 2 * R * Math.Asin(Math.Sqrt(hav));
         }
+
+
+        
+///////// Distancia desde un nodo /////////////////////////////
+        public List<(Persona destino, double distancia)> DistanciasDesde(Persona origen)
+        {
+            var lista = new List<(Persona destino, double distancia)>();
+
+            foreach (var p in _adyacencias.Keys)
+            {
+                if (p == origen) continue;
+                double d = CalcularDistancia(origen, p);
+                lista.Add((p, d));
+            }
+
+            return lista.OrderBy(x => x.distancia).ToList();
+        }
+
+////////  PAR MAS LEJOS /////////////////////////////
+
+        public (Persona A, Persona B, double distancia) ParMasLejos()
+        {
+            double maxD = -1;
+            Persona A = null, B = null;
+
+            var personas = ListarPersonas();
+
+            for (int i = 0; i < personas.Count; i++)
+            {
+                for (int j = i + 1; j < personas.Count; j++)
+                {
+                    double d = CalcularDistancia(personas[i], personas[j]);
+                    if (d > maxD)
+                    {
+                        maxD = d;
+                        A = personas[i];
+                        B = personas[j];
+                    }
+                }
+            }
+
+            return (A, B, maxD);
+        }
+
+////////  PAR MAS CERCA  /////////////////////////////
+
+        public (Persona A, Persona B, double distancia) ParMasCerca()
+        {
+            double minD = double.MaxValue;
+            Persona A = null, B = null;
+
+            var personas = ListarPersonas();
+
+            for (int i = 0; i < personas.Count; i++)
+            {
+                for (int j = i + 1; j < personas.Count; j++)
+                {
+                    double d = CalcularDistancia(personas[i], personas[j]);
+                    if (d < minD)
+                    {
+                        minD = d;
+                        A = personas[i];
+                        B = personas[j];
+                    }
+                }
+            }
+
+            return (A, B, minD);
+        }
+  ////////   Dist promedio /////////////////////////////      
+        public double DistanciaPromedio()
+        {
+            var personas = ListarPersonas();
+            double suma = 0;
+            int count = 0;
+
+            for (int i = 0; i < personas.Count; i++)
+            {
+                for (int j = i + 1; j < personas.Count; j++)
+                {
+                    suma += CalcularDistancia(personas[i], personas[j]);
+                    count++;
+                }
+            }
+
+            if (count == 0) return 0;
+
+            return suma / count;
+        }
+
+   
+
+        ////////////////////////CRUD///////////////////////////////////
         // CREATE
         public void AgregarPersona(Persona persona)
         {
