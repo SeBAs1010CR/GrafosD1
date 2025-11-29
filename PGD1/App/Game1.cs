@@ -47,10 +47,12 @@ namespace Proyecto
             _graphics.PreferredBackBufferWidth = 1400;  // Ancho deseado
             _graphics.PreferredBackBufferHeight = 700;  // Alto deseado
             _graphics.ApplyChanges();
-            _arbolService = new ArbolGenealogicoService();
+            _arbolService = new ArbolGenealogicoService(); //Arbol DIlan
+            _arbolService.ProbarPersistencia(); //para probar si se mantiene guardado el cochino arbol jaja
             _grafo = new GrafoResidencias();
             _ui = new UIManager();
             base.Initialize();
+            
         }
 
         private Texture2D CreateCircleTexture(GraphicsDevice graphicsDevice, int diameter)

@@ -34,7 +34,7 @@ namespace Proyecto.Models
         }
 
         // VALIDACIONES DE DATOS 
-        private void ValidarDatosPersona(string nombre, string cedula, DateTime fechaNacimiento, 
+        private void ValidarDatosPersona(string nombre, string cedula, DateTime fechaNacimiento,
                                        double latitud, double longitud)
         {
             if (string.IsNullOrWhiteSpace(nombre))
@@ -78,54 +78,130 @@ namespace Proyecto.Models
         {
             try
             {
-                var datos = new
-                {
-                    Personas = _familia.TodasLasPersonas.ToList(),
-                    FechaGuardado = DateTime.Now
-                };
+                var datos = new DatosPersistencia();
 
-                string json = JsonSerializer.Serialize(datos, new JsonSerializerOptions { WriteIndented = true });
+                // Guardar cada persona con referencias a padres
+                foreach (var persona in _familia.TodasLasPersonas)
+                {
+                    var personaData = new PersonaData
+                    {
+                        Persona = persona,
+                        CedulaPadre = persona.Padre?.Cedula,
+                        CedulaMadre = persona.Madre?.Cedula
+                    };
+                    datos.Personas.Add(personaData);
+                }
+
+                // Guardar relaciones de pareja
+                datos.Parejas = ObtenerRelacionesParejas();
+
+                string json = JsonSerializer.Serialize(datos, new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve
+                });
+
                 File.WriteAllText(_archivoDatos, json);
-                Console.WriteLine($"Datos guardados: {_familia.TotalPersonas} personas");
+                Console.WriteLine($" Datos guardados: {_familia.TotalPersonas} personas");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error guardando datos: {ex.Message}");
+                Console.WriteLine($" Error guardando datos: {ex.Message}");
             }
+        }
+
+        private List<RelacionPareja> ObtenerRelacionesParejas()
+        {
+            var relaciones = new List<RelacionPareja>();
+            var personasProcesadas = new HashSet<string>();
+
+            foreach (var persona in _familia.TodasLasPersonas)
+            {
+                if (persona.Pareja != null && !personasProcesadas.Contains(persona.Cedula))
+                {
+                    relaciones.Add(new RelacionPareja
+                    {
+                        Cedula1 = persona.Cedula,
+                        Cedula2 = persona.Pareja.Cedula
+                    });
+                    personasProcesadas.Add(persona.Pareja.Cedula);
+                }
+            }
+            return relaciones;
         }
 
         private void CargarDatos()
         {
-            if (!File.Exists(_archivoDatos)) 
+            if (!File.Exists(_archivoDatos))
             {
-                Console.WriteLine("No hay datos previos para cargar");
+                Console.WriteLine(" No hay datos previos para cargar - empezando con árbol vacío");
                 return;
             }
 
             try
             {
                 string json = File.ReadAllText(_archivoDatos);
-                var datos = JsonSerializer.Deserialize<JsonElement>(json);
-                
-                if (datos.TryGetProperty("Personas", out var personasElement))
+                var datos = JsonSerializer.Deserialize<DatosPersistencia>(json);
+
+                if (datos?.Personas == null)
                 {
-                    var personas = JsonSerializer.Deserialize<List<Persona>>(personasElement.GetRawText());
-                    
-                    // Reconstruir el árbol
-                    foreach (var persona in personas)
-                    {
-                        // Aquí necesitarías reconstruir las relaciones padre/madre
-                        // basado en las cédulas guardadas en propiedades adicionales
-                        _familia.AgregarPersona(persona);
-                    }
-                    
-                    Console.WriteLine($"Datos cargados: {_familia.TotalPersonas} personas");
+                    Console.WriteLine("Formato de archivo inválido");
+                    return;
                 }
+
+                Console.WriteLine($" Cargando {datos.Personas.Count} personas del archivo...");
+
+                // PRIMERA PASADA: Crear todas las personas sin relaciones
+                var personasTemp = new Dictionary<string, Persona>();
+                foreach (var personaData in datos.Personas)
+                {
+                    personasTemp[personaData.Persona.Cedula] = personaData.Persona;
+                }
+
+                // SEGUNDA PASADA: Reconstruir relaciones familiares
+                foreach (var personaData in datos.Personas)
+                {
+                    var persona = personasTemp[personaData.Persona.Cedula];
+                    Persona padre = null;
+                    Persona madre = null;
+
+                    // Buscar padre si existe
+                    if (!string.IsNullOrEmpty(personaData.CedulaPadre) &&
+                        personasTemp.ContainsKey(personaData.CedulaPadre))
+                    {
+                        padre = personasTemp[personaData.CedulaPadre];
+                    }
+
+                    // Buscar madre si existe
+                    if (!string.IsNullOrEmpty(personaData.CedulaMadre) &&
+                        personasTemp.ContainsKey(personaData.CedulaMadre))
+                    {
+                        madre = personasTemp[personaData.CedulaMadre];
+                    }
+
+                    // Agregar al árbol con sus relaciones
+                    _familia.AgregarPersona(persona, padre, madre);
+                }
+
+                // TERCERA PASADA: Reconstruir relaciones de pareja
+                foreach (var relacion in datos.Parejas)
+                {
+                    if (personasTemp.ContainsKey(relacion.Cedula1) &&
+                        personasTemp.ContainsKey(relacion.Cedula2))
+                    {
+                        var persona1 = personasTemp[relacion.Cedula1];
+                        var persona2 = personasTemp[relacion.Cedula2];
+                        _familia.EstablecerPareja(persona1, persona2);
+                    }
+                }
+
+                Console.WriteLine($" Árbol cargado exitosamente: {_familia.TotalPersonas} personas");
+                Console.WriteLine($"Coherencia del árbol: {_familia.ValidarArbolCoherente()}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error cargando datos: {ex.Message}");
-                // Si hay error, empezar con árbol vacío
+                Console.WriteLine($" Error cargando datos: {ex.Message}");
+                Console.WriteLine("Iniciando con árbol vacío debido al error");
                 _familia = new Familia();
             }
         }
@@ -135,7 +211,7 @@ namespace Proyecto.Models
         public List<Persona> ObtenerTodasPersonas() => _familia.TodasLasPersonas.ToList();
         public int TotalPersonas => _familia.TotalPersonas;
         public bool ArbolEsCoherente => _familia.ValidarArbolCoherente();
-        
+
         // MÉTODO PARA ESTABLECER PAREJA
         public void EstablecerPareja(string cedula1, string cedula2)
         {
@@ -148,5 +224,46 @@ namespace Proyecto.Models
             _familia.EstablecerPareja(persona1, persona2);
             GuardarDatos();
         }
+
+        // CLASES AUXILIARES PARA PERSISTENCIA atte: dilan
+        private class DatosPersistencia
+        {
+            public List<PersonaData> Personas { get; set; } = new List<PersonaData>();
+            public List<RelacionPareja> Parejas { get; set; } = new List<RelacionPareja>();
+        }
+
+        private class PersonaData
+        {
+            public Persona Persona { get; set; }
+            public string CedulaPadre { get; set; }
+            public string CedulaMadre { get; set; }
+        }
+
+        private class RelacionPareja
+        {
+            public string Cedula1 { get; set; }
+            public string Cedula2 { get; set; }
+        }
+        // MÉTODO PARA PROBAR LA PERSISTENCIA 
+        public void ProbarPersistencia()
+        {
+            Console.WriteLine(" PROBANDO PERSISTENCIA DEL ÁRBOL:");
+            Console.WriteLine($"- Personas en árbol: {TotalPersonas}");
+            Console.WriteLine($"- Archivo de datos: {_archivoDatos}");
+            Console.WriteLine($"- Árbol coherente: {ArbolEsCoherente}");
+            
+            // Mostrar relaciones de ejemplo
+            if (TotalPersonas > 0)
+            {
+                var primeraPersona = ObtenerTodasPersonas().First();
+                Console.WriteLine($"- Ejemplo: {primeraPersona.Nombre} tiene {primeraPersona.Hijos.Count} hijos");
+                
+                if (primeraPersona.Padre != null)
+                    Console.WriteLine($"- Padre: {primeraPersona.Padre.Nombre}");
+                if (primeraPersona.Madre != null)  
+                    Console.WriteLine($"- Madre: {primeraPersona.Madre.Nombre}");
+            }
+        }
+
     }
 }
