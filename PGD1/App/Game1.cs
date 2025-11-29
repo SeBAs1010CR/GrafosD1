@@ -31,7 +31,8 @@ namespace Proyecto
         private Texture2D[] _avatars;
         private AvatarSelector _selector;
         
-      
+        //Variable que agregue para poder usar arbolgenealogicoservice
+        private ArbolGenealogicoService _arbolService;
 
 
         public Game1()
@@ -46,6 +47,7 @@ namespace Proyecto
             _graphics.PreferredBackBufferWidth = 1400;  // Ancho deseado
             _graphics.PreferredBackBufferHeight = 700;  // Alto deseado
             _graphics.ApplyChanges();
+            _arbolService = new ArbolGenealogicoService();
             _grafo = new GrafoResidencias();
             _ui = new UIManager();
             base.Initialize();
@@ -109,9 +111,29 @@ namespace Proyecto
             _form.SetSelector(_selector);
             _form.OnGuardar = (persona) =>
             {
+                //  CÓDIGO ORIGINAL 
                 _grafo.AgregarNodo(persona);
                 _grafo.AsignarPosicionesJerarquicas();
                 System.Console.WriteLine($"Persona agregada: {persona.Nombre} ({persona.Cedula})");
+                
+                // Codigo que agregue atte: Dilan
+                try
+                {
+                    _arbolService.AgregarPersona(
+                        persona.Nombre,
+                        persona.Cedula,
+                        persona.FechaNacimiento,
+                        persona.Latitud,
+                        persona.Longitud,
+                        persona.FotoPath
+                        // Nota: Los padres se agregarán después si los capturamos del formulario
+                    );
+                    Console.WriteLine($" Persona agregada al árbol genealógico: {persona.Nombre}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($" Error en árbol genealógico: {ex.Message}");
+                }
             };
             _blackCanvas = new Texture2D(GraphicsDevice, 1, 1);
             _blackCanvas.SetData(new[] { Color.Black });
