@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "riDQ0iRUj5A=",
+  "dgSpecHash": "MLFQJcS0Fv4=",
   "success": true,
-  "projectFilePath": "/Users/sazofeifa/Documents/monogame/PGD1/monogame.csproj",
+  "projectFilePath": "/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/monogame.csproj",
   "expectedPackageFiles": [
     "/Users/sazofeifa/.nuget/packages/monogame.content.builder.task/3.8.4.1/monogame.content.builder.task.3.8.4.1.nupkg.sha512",
     "/Users/sazofeifa/.nuget/packages/monogame.framework.desktopgl/3.8.4.1/monogame.framework.desktopgl.3.8.4.1.nupkg.sha512",

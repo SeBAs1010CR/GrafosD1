@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>/Users/sazofeifa/Documents/monogame/PGD1/Content/defaultPhoto.png</SourceFile>
-  <SourceTime>2025-11-25T18:24:23.1152261-06:00</SourceTime>
-  <DestFile>/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/defaultPhoto.xnb</DestFile>
-  <DestTime>2025-11-27T16:43:19.3782846-06:00</DestTime>
+  <SourceFile>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/defaultPhoto.png</SourceFile>
+  <SourceTime>2025-11-29T16:32:19.8771279-06:00</SourceTime>
+  <DestFile>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/bin/DesktopGL/defaultPhoto.xnb</DestFile>
+  <DestTime>2025-11-29T22:30:31.1798673-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2025-10-20T08:25:32-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

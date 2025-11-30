@@ -4,18 +4,18 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/AV1.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/AV2.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/AV3.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/AV4.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/AV5.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/AV6.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/AV7.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/AV8.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/AV9.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/DefaultFont.spritefont</File>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/defaultPhoto.png</File>
-    <File>/Users/sazofeifa/Documents/monogame/PGD1/Content/mapamundi.png</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/AV1.png</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/AV2.png</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/AV3.png</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/AV4.png</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/AV5.png</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/AV6.png</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/AV7.png</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/AV8.png</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/AV9.png</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/DefaultFont.spritefont</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/defaultPhoto.png</File>
+    <File>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/mapamundi.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
