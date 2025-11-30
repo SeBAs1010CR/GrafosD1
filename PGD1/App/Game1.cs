@@ -130,8 +130,10 @@ namespace Proyecto
             _form.SetSelector(_selector);
             _form.OnGuardar = (persona) =>
             {
-                //  CÓDIGO ORIGINAL 
+                //  
                 _grafo.AgregarNodo(persona);
+                _grafo.AsignarPosicionesJerarquicas();
+                System.Console.WriteLine($"Persona agregada: {persona.Nombre} ({persona.Cedula})");
         
                 try
                 {
@@ -154,10 +156,22 @@ namespace Proyecto
                         persona.FechaNacimiento,
                         persona.Latitud,
                         persona.Longitud,
-                        persona.FotoPath
-                        // Nota: Los padres se agregarán después si los capturamos del formulario
+                        persona.FotoPath,
+                        cedulaPadre: _form.CedulaPadre,    // 🆕 Usar padre del formulario
+                        cedulaMadre: _form.CedulaMadre     // 🆕 Usar madre del formulario
                     );
-                    Console.WriteLine($" Persona agregada al árbol genealógico: {persona.Nombre}");
+                    
+                    Console.WriteLine($"Persona agregada al árbol genealógico: {persona.Nombre}");
+                    
+                    // 🆕 OPCIONAL: Establecer pareja si existe
+                    if (!string.IsNullOrEmpty(_form.CedulaPareja))
+                    {
+                        _arbolService.EstablecerPareja(persona.Cedula, _form.CedulaPareja);
+                        Console.WriteLine($" Pareja establecida: {persona.Nombre} con {_form.CedulaPareja}");
+                    }
+                    
+                    // 🆕 Mostrar estadísticas del árbol
+                    Console.WriteLine($"Árbol: {_arbolService.TotalPersonas} personas, Coherente: {_arbolService.ArbolEsCoherente}");
                 }
                 catch (Exception ex)
                 {

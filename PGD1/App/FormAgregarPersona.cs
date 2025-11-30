@@ -37,7 +37,10 @@ namespace ProyectoUI
         private bool seleccionarEnMapa = false;
 
 
-
+        // EN FormAgregarPersona.cs - Agrega estas propiedades públicas
+        public string CedulaMadre => nombremadre;
+        public string CedulaPadre => nombrepadre; 
+        public string CedulaPareja => ""; 
         public FormAgregarPersona(GrafoResidencias grafo,  Texture2D[] avatars)
         {
             _grafo = grafo;
