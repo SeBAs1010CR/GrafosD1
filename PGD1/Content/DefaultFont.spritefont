@@ -6,39 +6,36 @@
     <Spacing>2</Spacing>
     <UseKerning>true</UseKerning>
     <Style>Regular</Style>
+
     <CharacterRegions>
+      <!-- ASCII completo -->
       <CharacterRegion>
-        <Start> </Start>
-        <End>~</End>
+        <Start>&#32;</Start> <!-- espacio -->
+        <End>&#126;</End>    <!-- ~ -->
+      </CharacterRegion>
+
+      <!-- Vocales minúsculas acentuadas -->
+      <CharacterRegion>
+        <Start>á</Start>
+        <End>ú</End>
+      </CharacterRegion>
+
+      <!-- Vocales mayúsculas acentuadas -->
+      <CharacterRegion>
+        <Start>Á</Start>
+        <End>Ú</End>
+      </CharacterRegion>
+
+      <!-- Ñ y ñ -->
+      <CharacterRegion>
+        <Start>ñ</Start>
+        <End>ñ</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>Ñ</Start>
+        <End>Ñ</End>
       </CharacterRegion>
     </CharacterRegions>
+
   </Asset>
 </XnaContent>
-<CharacterRegions>
-  <CharacterRegion>
-    <Start>&#32;</Start>
-    <End>&#255;</End>
-  </CharacterRegion>
-</CharacterRegions>
-<CharacterRegions>
-  <CharacterRegion>
-    <Start> </Start>
-    <End>~</End>
-  </CharacterRegion>
-  <CharacterRegion>
-    <Start>á</Start>
-    <End>ú</End>
-  </CharacterRegion>
-  <CharacterRegion>
-    <Start>Á</Start>
-    <End>Ú</End>
-  </CharacterRegion>
-  <CharacterRegion>
-    <Start>ñ</Start>
-    <End>ñ</End>
-  </CharacterRegion>
-  <CharacterRegion>
-    <Start>Ñ</Start>
-    <End>Ñ</End>
-  </CharacterRegion>
-</CharacterRegions>

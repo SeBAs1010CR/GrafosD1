@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>/Users/sazofeifa/Documents/monogame/PGD1/Content/AV3.png</SourceFile>
-  <SourceTime>2025-11-25T19:50:47.0390135-06:00</SourceTime>
-  <DestFile>/Users/sazofeifa/Documents/monogame/PGD1/Content/bin/DesktopGL/AV3.xnb</DestFile>
-  <DestTime>2025-11-27T16:43:19.2386258-06:00</DestTime>
+  <SourceFile>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/AV3.png</SourceFile>
+  <SourceTime>2025-11-29T16:32:19.851687-06:00</SourceTime>
+  <DestFile>/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/Content/bin/DesktopGL/AV3.xnb</DestFile>
+  <DestTime>2025-11-29T22:30:31.0550933-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2025-10-20T08:25:32-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

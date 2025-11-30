@@ -300,11 +300,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/sazofeifa/Documents/monogame/PGD1/monogame.csproj",
+      "projectUniqueName": "/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/monogame.csproj",
       "projectName": "monogame",
-      "projectPath": "/Users/sazofeifa/Documents/monogame/PGD1/monogame.csproj",
+      "projectPath": "/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/monogame.csproj",
       "packagesPath": "/Users/sazofeifa/.nuget/packages/",
-      "outputPath": "/Users/sazofeifa/Documents/monogame/PGD1/obj/",
+      "outputPath": "/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/sazofeifa/.nuget/NuGet/NuGet.Config"

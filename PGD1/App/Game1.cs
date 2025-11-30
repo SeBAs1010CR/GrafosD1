@@ -317,7 +317,7 @@ namespace Proyecto
                 $"Par mas lejos: {parLejosText}\n" +
                 $"Promedio distancias: {promedio:F2} km\n";
 
-            Vector2 pos = new Vector2(1020, 400);
+            Vector2 pos = new Vector2(950, 400);
             Vector2 size = _font.MeasureString(texto);
 
             sb.Draw(_blackCanvas, new Rectangle((int)pos.X - 10, (int)pos.Y - 10,
@@ -334,19 +334,19 @@ namespace Proyecto
 
             _spriteBatch.Begin();
 
-            // 🗺️ Dibuja el mapa
+            // Dibuja el mapa
             _spriteBatch.Draw(_mapTexture, new Rectangle(0, 0, 1280, 720), Color.Black);
             
             DrawArbolGenealogico(_spriteBatch);
-            // 👥 Dibuja las personas del grafo
+            // Dibuja las personas del grafo
             foreach (var persona in _grafo.ListarPersonas())
             {
                 Vector2 pos = ConvertirCoordenadas(persona.Latitud, persona.Longitud);
                 _spriteBatch.Draw(persona.Foto, new Rectangle((int)pos.X, (int)pos.Y, 40, 40), Color.Black);
-                _spriteBatch.DrawString(_font, persona.Nombre, pos + new Vector2(0, 45), Color.Black);
+                _spriteBatch.DrawString(_font, persona.Nombre, pos + new Vector2(0, 45), Color.White);
             }
 
-            // 🧮 Dibuja interfaz y formulario
+            //Dibuja interfaz y formulario
             _ui.Draw(_spriteBatch, _font);
 
             _form.Draw(_spriteBatch, GraphicsDevice);
@@ -429,12 +429,29 @@ namespace Proyecto
                         // Poner texto en la mitad de la línea
                         Vector2 mid = (origen + destinoPos) / 2;
 
-                        _spriteBatch.DrawString(
-                            _font,
-                            $"{distancia:F1} km",
-                            mid + new Vector2(10, -10),
-                            Color.Cyan
-                        );
+                        // Texto de distancia
+                    string distText = $"{distancia:F1} km";
+                    Vector2 textPos = mid + new Vector2(10, -10);
+                    Vector2 textSize = _font.MeasureString(distText);
+
+                    // Fondo negro con transparencia detrás del texto
+                    Rectangle fondo = new Rectangle(
+                        (int)textPos.X - 4,
+                        (int)textPos.Y - 4,
+                        (int)textSize.X + 8,
+                        (int)textSize.Y + 8
+                    );
+
+                    _spriteBatch.Draw(_blackCanvas, fondo, Color.Black * 0.7f);
+
+                    // Ahora sí, el texto encima
+                    _spriteBatch.DrawString(
+                        _font,
+                        distText,
+                        textPos,
+                        Color.Red
+                    );
+
                     }
                 }
                 // Dibuja personas en el mapa
@@ -442,7 +459,7 @@ namespace Proyecto
                 {
                     Vector2 pos = ConvertirCoordenadas(persona.Latitud, persona.Longitud);
                     _spriteBatch.Draw(persona.Foto, new Rectangle((int)pos.X, (int)pos.Y, 40, 40), Color.White);
-                    _spriteBatch.DrawString(_font, persona.Nombre, pos + new Vector2(0, 45), Color.Black);
+                    _spriteBatch.DrawString(_font, persona.Nombre, pos + new Vector2(0, 45), Color.Red);
                 }
                 if (esperandoUbicacion)
                 {
@@ -452,7 +469,7 @@ namespace Proyecto
                         Color.Yellow);
 
                     _spriteBatch.End();
-                    return; // para que no dibuje avatares encima
+                    return;
                 }
 
 
@@ -466,7 +483,7 @@ namespace Proyecto
             base.Draw(gameTime);
         }
 
-        // 🌍 Convierte latitud/longitud a posición en el mapa (simplificado)
+        //Convierte latitud/longitud a posición en el mapa (simplificado)
         private Vector2 ConvertirCoordenadas(double lat, double lon)
         {
             float x = (float)((lon + 180) / 360 * 1280);
