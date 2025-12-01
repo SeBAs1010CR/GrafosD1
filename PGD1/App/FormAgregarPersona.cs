@@ -37,10 +37,7 @@ namespace ProyectoUI
         private bool seleccionarEnMapa = false;
 
 
-        // EN FormAgregarPersona.cs - Agrega estas propiedades públicas
-        public string CedulaMadre => nombremadre;
-        public string CedulaPadre => nombrepadre; 
-        public string CedulaPareja => ""; 
+
         public FormAgregarPersona(GrafoResidencias grafo,  Texture2D[] avatars)
         {
             _grafo = grafo;
@@ -225,7 +222,7 @@ namespace ProyectoUI
             sb.DrawString(_font, "Elegir Avatar", new Vector2(190, 605), Color.White);
 
 
-            sb.DrawString(_font, "ENTER (guardar) o C (cancelar)", new Vector2(80, 655), Color.Yellow);
+            sb.DrawString(_font, "ENTER (guardar) o C (cancelar)\n Tab (Cambiar campo)", new Vector2(80, 650), Color.Yellow);
             
         }
 

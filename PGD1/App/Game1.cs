@@ -156,19 +156,19 @@ namespace Proyecto
                         persona.FechaNacimiento,
                         persona.Latitud,
                         persona.Longitud,
-                        persona.FotoPath,
-                        cedulaPadre: _form.CedulaPadre,    // 🆕 Usar padre del formulario
-                        cedulaMadre: _form.CedulaMadre     // 🆕 Usar madre del formulario
+                        persona.FotoPath
+                        // cedulaPadre: _form.CedulaPadre,    // 🆕 Usar padre del formulario
+                        // cedulaMadre: _form.CedulaMadre     // 🆕 Usar madre del formulario
                     );
                     
                     Console.WriteLine($"Persona agregada al árbol genealógico: {persona.Nombre}");
                     
-                    // 🆕 OPCIONAL: Establecer pareja si existe
-                    if (!string.IsNullOrEmpty(_form.CedulaPareja))
-                    {
-                        _arbolService.EstablecerPareja(persona.Cedula, _form.CedulaPareja);
-                        Console.WriteLine($" Pareja establecida: {persona.Nombre} con {_form.CedulaPareja}");
-                    }
+                    // // 🆕 OPCIONAL: Establecer pareja si existe
+                    // if (!string.IsNullOrEmpty(_form.CedulaPareja))
+                    // {
+                    //     _arbolService.EstablecerPareja(persona.Cedula, _form.CedulaPareja);
+                    //     Console.WriteLine($" Pareja establecida: {persona.Nombre} con {_form.CedulaPareja}");
+                    // }
                     
                     // 🆕 Mostrar estadísticas del árbol
                     Console.WriteLine($"Árbol: {_arbolService.TotalPersonas} personas, Coherente: {_arbolService.ArbolEsCoherente}");
@@ -249,7 +249,7 @@ namespace Proyecto
                 _form.Mostrar();
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.OemPeriod))
+            if (Keyboard.GetState().IsKeyDown(Keys.OemSemicolon))
             {
                 verArbol = false;  
                 _form.Ocultar();   
@@ -408,10 +408,12 @@ namespace Proyecto
 
                 string texto =
                     "CONTROLES\n\n" +
+                    "[,] / [;]  - Mostrar/ocultar arbol genealogico\n" +
                     "F1  - Seleccionar ubicacion en mapa\n" +
-                    ", .  - Mostrar/ocultar arbol genealogico\n" +
-                    "ESC - Salir\n\n" +
-                    "Haga clic sobre una persona para ver distancias";
+                    "F2  - Ocultar formulario\n" +
+                    "ESC - Salir\n" +
+                    "Haga clic sobre una persona para ver distancias\n"+
+                    "Posicionese sobre la persona para ver estadisticas";
 
                 _spriteBatch.DrawString(_font, texto, new Vector2(70, 70), Color.White);
             }
