@@ -102,17 +102,17 @@ namespace Proyecto
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // 🗺️ Mapa de fondo
+            // Mapa de fondo
             _mapTexture = Content.Load<Texture2D>("mapamundi");
             
-            // 🔤 Fuente
+            //  Fuente
             _font = Content.Load<SpriteFont>("DefaultFont"); // asegúrate que existe DefaultFont.spritefont
             _circleTexture = CreateCircleTexture(GraphicsDevice, 50);
 
     // ▪️ Textura 1x1 para dibujar líneas
             _pixelTexture = new Texture2D(GraphicsDevice, 1, 1);
             _pixelTexture.SetData(new[] { Color.White });
-            // 🧭 Interfaz de usuario
+            //  Interfaz de usuario
             _ui.LoadContent(Content, GraphicsDevice);
             _infoIcon = CreateCircleTexture(GraphicsDevice, 30);
             _avatars = new Texture2D[9];
@@ -157,20 +157,14 @@ namespace Proyecto
                         persona.Latitud,
                         persona.Longitud,
                         persona.FotoPath
-                        // cedulaPadre: _form.CedulaPadre,    // 🆕 Usar padre del formulario
-                        // cedulaMadre: _form.CedulaMadre     // 🆕 Usar madre del formulario
+                        
                     );
                     
                     Console.WriteLine($"Persona agregada al árbol genealógico: {persona.Nombre}");
                     
-                    // // 🆕 OPCIONAL: Establecer pareja si existe
-                    // if (!string.IsNullOrEmpty(_form.CedulaPareja))
-                    // {
-                    //     _arbolService.EstablecerPareja(persona.Cedula, _form.CedulaPareja);
-                    //     Console.WriteLine($" Pareja establecida: {persona.Nombre} con {_form.CedulaPareja}");
-                    // }
                     
-                    // 🆕 Mostrar estadísticas del árbol
+                    
+                    //  Mostrar estadísticas del árbol
                     Console.WriteLine($"Árbol: {_arbolService.TotalPersonas} personas, Coherente: {_arbolService.ArbolEsCoherente}");
                 }
                 catch (Exception ex)
