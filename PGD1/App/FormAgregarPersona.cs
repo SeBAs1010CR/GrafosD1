@@ -235,7 +235,7 @@ namespace ProyectoUI
             sb.Draw(_inputTex, new Rectangle(180, 600, 180, 40), Color.DarkGray);
             sb.DrawString(_font, "Elegir Avatar", new Vector2(190, 605), Color.White);
 
-            sb.DrawString(_font, "ENTER (guardar) o C (cancelar)\nTab (Cambiar campo) [/] (Ocultar Forms)", new Vector2(80, 650), Color.Yellow);
+            sb.DrawString(_font, "ENTER (guardar)\nTab (Cambiar campo) [/] (Ocultar Forms)", new Vector2(80, 650), Color.Yellow);
             
         }
 
