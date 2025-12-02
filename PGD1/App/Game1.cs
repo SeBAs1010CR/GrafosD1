@@ -317,6 +317,7 @@ namespace Proyecto
 
             string texto =
                 $"Nombre: {p.Nombre}\n" +
+                $"Edad: {p.Edad}  {(p.EstaVivo ? "Vivo" : "Fallecido")}\n" +
                 $"Cedula: {p.Cedula}\n" +
                 $"Lat: {p.Latitud}\n" +
                 $"Lon: {p.Longitud}\n\n" +

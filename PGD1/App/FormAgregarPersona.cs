@@ -24,6 +24,8 @@ namespace ProyectoUI
         private string nombremadre = "";
         private string nombrepadre = "";
         private string nombrePareja = "";
+        private string fechaDef = "";
+
 
         private int campoActivo = 0; // 0=nombre, 1=cedula, 2=fecha, 3=lat, 4=lon 5=madre, 6=padre
         private bool visible = false;
@@ -79,7 +81,7 @@ namespace ProyectoUI
 
             // Cambiar campo activo con Tab
             if (kb.IsKeyDown(Keys.Tab) && _prevKeyboard.IsKeyUp(Keys.Tab))
-                campoActivo = (campoActivo + 1) % 8;
+                campoActivo = (campoActivo + 1) % 9;
 
             // Escribir texto en el campo activo
             foreach (var key in kb.GetPressedKeys())
@@ -100,19 +102,24 @@ namespace ProyectoUI
                                 if (fechaNac.Length > 0) fechaNac = fechaNac[..^1];
                                 break;
                             case 3:
-                                if (latitud.Length > 0) latitud = latitud[..^1];
+                                if (fechaDef.Length > 0) fechaDef = fechaDef[..^1];
                                 break;
                             case 4:
-                                if (longitud.Length > 0) longitud = longitud[..^1];
+                                if (latitud.Length > 0) latitud = latitud[..^1];
                                 break;
                             case 5:
-                                if (nombremadre.Length > 0) nombremadre = nombremadre[..^1];
+                                if (longitud.Length > 0) longitud = longitud[..^1];
                                 break;
                             case 6:
+                                if (nombremadre.Length > 0) nombremadre = nombremadre[..^1];
+                                break;
+                            case 7:
                                 if (nombrepadre.Length > 0) nombrepadre = nombrepadre[..^1];
                                 break;
-                            case 7: 
+                            case 8: 
                                 if (nombrePareja.Length > 0) nombrePareja = nombrePareja[..^1]; break;
+                            
+
 
                         }
                     }
@@ -125,16 +132,18 @@ namespace ProyectoUI
                             case 0: nombre += c; break;
                             case 1: cedula += c; break;
                             case 2: fechaNac += c; break;
-                            case 3: latitud += c; break;
-                            case 4: longitud += c; break;
-                            case 5: nombremadre += c; break;
-                            case 6: nombrepadre += c; break;
-                            case 7: nombrePareja += c; break;
+                            case 3: fechaDef += c; break;
+                            case 4: latitud += c; break;
+                            case 5: longitud += c; break;
+                            case 6: nombremadre += c; break;
+                            case 7: nombrepadre += c; break;
+                            case 8: nombrePareja += c; break;
                         }
                     }
                 }
             }
-
+            
+            
             // Guardar con Enter
             if (kb.IsKeyDown(Keys.Enter) && _prevKeyboard.IsKeyUp(Keys.Enter))
             {
@@ -157,6 +166,11 @@ namespace ProyectoUI
                         padre: padreObj
                         
                     );
+                    if (!string.IsNullOrWhiteSpace(fechaDef))
+                        persona.FechaDefuncion = DateTime.Parse(fechaDef);
+                    else
+                        persona.FechaDefuncion = null;
+
                     // Establecer pareja
                     persona.Pareja = parejaObj;
                     if (parejaObj != null)
@@ -164,7 +178,7 @@ namespace ProyectoUI
                     persona.FotoPath = avatarSeleccionado;
 
                     OnGuardar?.Invoke(persona);
-                    Ocultar();
+                    ResetCampos();
                 }
                 catch (Exception ex)
                 {
@@ -190,7 +204,7 @@ namespace ProyectoUI
 
 
             // Cancelar con C
-            if (kb.IsKeyDown(Keys.C)) Ocultar();
+            if (kb.IsKeyDown(Keys.OemQuestion)) Ocultar();
 
             _prevKeyboard = kb;
         }
@@ -201,16 +215,16 @@ namespace ProyectoUI
 
             
             // Panel principal
-            sb.Draw(_panelTex, new Rectangle(20, 50, 700, 800), Color.White);
+            sb.Draw(_panelTex, new Rectangle(20, 20, 700, 900), Color.White);
             
 
             // Campos
-            string[] etiquetas = { "Nombre", "Cedula", "Fecha Nac (YYYY-MM-DD)", "Latitud", "Longitud", "Madre", "Padre", "Pereja"};
-            string[] valores = { nombre, cedula, fechaNac, latitud, longitud, nombremadre, nombrepadre, nombrePareja };
+            string[] etiquetas = { "Nombre", "Cedula", "F.Nac\n(yyyy-mm-dd)", "F.Def\n(opcional)" , "Latitud", "Longitud", "Madre", "Padre", "Pereja"};
+            string[] valores = { nombre, cedula, fechaNac, fechaDef, latitud, longitud, nombremadre, nombrepadre, nombrePareja };
 
             for (int i = 0; i < etiquetas.Length; i++)
             {
-                int y = 150 + i * 60;
+                int y = 50 + i * 60;
                 sb.DrawString(_font, etiquetas[i], new Vector2(40, y), Color.White);
                 sb.Draw(_inputTex, new Rectangle(180, y - 5, 260, 30), i == campoActivo ? Color.White : Color.Gray);
                 sb.DrawString(_font, valores[i], new Vector2(190, y), Color.Black);
@@ -221,8 +235,7 @@ namespace ProyectoUI
             sb.Draw(_inputTex, new Rectangle(180, 600, 180, 40), Color.DarkGray);
             sb.DrawString(_font, "Elegir Avatar", new Vector2(190, 605), Color.White);
 
-
-            sb.DrawString(_font, "ENTER (guardar) o C (cancelar)\n Tab (Cambiar campo)", new Vector2(80, 650), Color.Yellow);
+            sb.DrawString(_font, "ENTER (guardar) o C (cancelar)\nTab (Cambiar campo) [/] (Ocultar Forms)", new Vector2(80, 650), Color.Yellow);
             
         }
 
@@ -264,6 +277,23 @@ namespace ProyectoUI
                 _avatarPreview = _avatars[index];
             };
         }
+        private void ResetCampos()
+        {
+            nombre = "";
+            cedula = "";
+            fechaNac = "";
+            latitud = "";
+            longitud = "";
+            nombremadre = "";
+            nombrepadre = "";
+            nombrePareja = "";
+            fechaDef = "";
+
+            campoActivo = 0; 
+            avatarSeleccionado = "AV1";
+            _avatarPreview = _avatars[0];
+        }
+
 
 
     }
