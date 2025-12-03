@@ -127,6 +127,13 @@
 /Users/sazofeifa/Documents/Tec/GrafosD1/PGD1/obj/Debug/net9.0/monogame.pdb
 /Users/sazofeifa/Documents/Tec/GrafosD1/PGD1/obj/Debug/net9.0/monogame.genruntimeconfig.cache
 /Users/sazofeifa/Documents/Tec/GrafosD1/PGD1/obj/Debug/net9.0/ref/monogame.dll
+/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/mgcb.tool.restore
+/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.csproj.AssemblyReference.cache
+/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.AssemblyInfoInputs.cache
+/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.AssemblyInfo.cs
+/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.csproj.CoreCompileInputs.cache
+/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.sourcelink.json
 /Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/bin/Debug/net9.0/Content/AV1.xnb
 /Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/bin/Debug/net9.0/Content/AV2.xnb
 /Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/bin/Debug/net9.0/Content/AV3.xnb
@@ -160,13 +167,6 @@
 /Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/bin/Debug/net9.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
 /Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/bin/Debug/net9.0/runtimes/osx/native/libSDL2-2.0.0.dylib
 /Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/bin/Debug/net9.0/runtimes/win-x64/native/SDL2.dll
-/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/mgcb.tool.restore
-/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.csproj.AssemblyReference.cache
-/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.GeneratedMSBuildEditorConfig.editorconfig
-/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.AssemblyInfoInputs.cache
-/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.AssemblyInfo.cs
-/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.csproj.CoreCompileInputs.cache
-/Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.sourcelink.json
 /Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.csproj.Up2Date
 /Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/monogame.dll
 /Users/sazofeifa/Documents/Tec/Datos I/GrafosD1/PGD1/obj/Debug/net9.0/refint/monogame.dll

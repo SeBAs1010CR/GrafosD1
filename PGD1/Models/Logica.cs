@@ -204,100 +204,103 @@ namespace Proyecto.Models
 
    
 
-        ////////////////////////CRUD///////////////////////////////////
-        // CREATE
-        public void AgregarPersona(Persona persona)
-        {
-            if (_adyacencias.Keys.Any(p => p.Cedula == persona.Cedula))
-                throw new Exception("Ya existe una persona con esa cédula.");
-            _adyacencias[persona] = new List<(Persona, double)>();
-        }
-        public void AsignarPosiciones()
-        {
-            int x = 100;
-            int y = 100;
-            int stepX = 200;
-            int stepY = 150;
+        // ////////////////////////CRUD///////////////////////////////////
+        // /// 
+        // /// 
+        // /// 
+        // // CREATE
+        // public void AgregarPersona(Persona persona)
+        // {
+        //     if (_adyacencias.Keys.Any(p => p.Cedula == persona.Cedula))
+        //         throw new Exception("Ya existe una persona con esa cédula.");
+        //     _adyacencias[persona] = new List<(Persona, double)>();
+        // }
+        // public void AsignarPosiciones()
+        // {
+        //     int x = 100;
+        //     int y = 100;
+        //     int stepX = 200;
+        //     int stepY = 150;
 
-            int index = 0;
+        //     int index = 0;
 
-            foreach (var persona in _adyacencias.Keys)
-            {
-                persona.Position = new Vector2(
-                    x + (index % 5) * stepX,
-                    y + (index / 5) * stepY
-                );
-                index++;
-            }
-        }
+        //     foreach (var persona in _adyacencias.Keys)
+        //     {
+        //         persona.Position = new Vector2(
+        //             x + (index % 5) * stepX,
+        //             y + (index / 5) * stepY
+        //         );
+        //         index++;
+        //     }
+        // }
 
 
-        // READ
-        public Persona BuscarPorCedula(string cedula)
-        {
-            return _adyacencias.Keys.FirstOrDefault(p => p.Cedula == cedula);
-        }
+        // // READ
+        // public Persona BuscarPorCedula(string cedula)
+        // {
+        //     return _adyacencias.Keys.FirstOrDefault(p => p.Cedula == cedula);
+        // }
 
         public List<Persona> ListarPersonas()
         {
             return _adyacencias.Keys.ToList();
         }
 
-        // UPDATE
-        public void ActualizarPersona(string cedula, string nuevoNombre, double nuevaLat, double nuevaLon)
-        {
-            var persona = BuscarPorCedula(cedula);
-            if (persona == null) throw new Exception("Persona no encontrada.");
+        // // UPDATE
+        // public void ActualizarPersona(string cedula, string nuevoNombre, double nuevaLat, double nuevaLon)
+        // {
+        //     var persona = BuscarPorCedula(cedula);
+        //     if (persona == null) throw new Exception("Persona no encontrada.");
 
-            persona.Nombre = nuevoNombre;
-            persona.Latitud = nuevaLat;
-            persona.Longitud = nuevaLon;
-        }
+        //     persona.Nombre = nuevoNombre;
+        //     persona.Latitud = nuevaLat;
+        //     persona.Longitud = nuevaLon;
+        // }
 
-        // DELETE
-        public void EliminarPersona(string cedula)
-        {
-            var persona = BuscarPorCedula(cedula);
-            if (persona == null) throw new Exception("Persona no encontrada.");
+        // // DELETE
+        // public void EliminarPersona(string cedula)
+        // {
+        //     var persona = BuscarPorCedula(cedula);
+        //     if (persona == null) throw new Exception("Persona no encontrada.");
 
-            foreach (var vecinos in _adyacencias.Values)
-                vecinos.RemoveAll(x => x.destino == persona);
+        //     foreach (var vecinos in _adyacencias.Values)
+        //         vecinos.RemoveAll(x => x.destino == persona);
 
-            _adyacencias.Remove(persona);
-        }
-        public void ConectarParentesco(Persona padre, Persona hijo)
-        {
-            hijo.Padre = padre;
-            AgregarNodo(padre);
-            AgregarNodo(hijo);
-        }
-        public void AgregarPersona(Persona persona, int index)
-        {
-            // Distribuir a las personas en una cuadrícula
-            int cols = 5;   // máximo 5 personas por fila
-            int x = 100 + (index % cols) * 150;
-            int y = 100 + (index / cols) * 150;
+        //     _adyacencias.Remove(persona);
+        // }
+        // public void ConectarParentesco(Persona padre, Persona hijo)
+        // {
+        //     hijo.Padre = padre;
+        //     AgregarNodo(padre);
+        //     AgregarNodo(hijo);
+        // }
+        // public void AgregarPersona(Persona persona, int index)
+        // {
+        //     // Distribuir a las personas en una cuadrícula
+        //     int cols = 5;   // máximo 5 personas por fila
+        //     int x = 100 + (index % cols) * 150;
+        //     int y = 100 + (index / cols) * 150;
 
-            persona.Position = new Vector2(x, y);
+        //     persona.Position = new Vector2(x, y);
 
-            _adyacencias[persona] = new List<(Persona, double)>();
-        }
+        //     _adyacencias[persona] = new List<(Persona, double)>();
+        // }
         public Persona BuscarPorNombre(string nombre)
         {
             return _adyacencias.Keys.FirstOrDefault(p => p.Nombre == nombre);
         }
 
-        public List<Persona> ObtenerHermanos(Persona persona)
-        {
-            return _adyacencias.Keys
-                .Where(p => p.Padre == persona.Padre && p != persona)
-                .ToList();
-        }
+        // public List<Persona> ObtenerHermanos(Persona persona)
+        // {
+        //     return _adyacencias.Keys
+        //         .Where(p => p.Padre == persona.Padre && p != persona)
+        //         .ToList();
+        // }
 
-        public List<Persona> ObtenerHijos(Persona p)
-        {
-            return _adyacencias.Keys.Where(h => h.Padre == p || h.Madre == p).ToList();
-        }
+        // public List<Persona> ObtenerHijos(Persona p)
+        // {
+        //     return _adyacencias.Keys.Where(h => h.Padre == p || h.Madre == p).ToList();
+        // }
 
 
 

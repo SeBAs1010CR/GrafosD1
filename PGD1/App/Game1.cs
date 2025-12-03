@@ -141,8 +141,7 @@ namespace Proyecto
                 }
                 catch
                 {
-                    Console.WriteLine($"⚠ No se pudo cargar avatar '{persona.FotoPath}'. Se usará DefaultPhoto.");
-                    persona.Foto = _ui.DefaultPhoto;
+                    Console.WriteLine($"⚠ No se pudo cargar avatar '{persona.FotoPath}'. ");
                 }
                 _grafo.AsignarPosicionesJerarquicas();
                 System.Console.WriteLine($"Persona agregada: {persona.Nombre} ({persona.Cedula})");
@@ -174,10 +173,7 @@ namespace Proyecto
             };
             _blackCanvas = new Texture2D(GraphicsDevice, 1, 1);
             _blackCanvas.SetData(new[] { Color.Black });
-            _ui.OnAlternarClick = () =>
-            {
-                verArbol = !verArbol;   
-            };
+            
             
 
 
@@ -265,7 +261,7 @@ namespace Proyecto
                     mostrarInfo = !mostrarInfo;
                 }
             }
-
+// No me acuerdo :(
             // Reiniciar hover
             personaHover = null;
             
@@ -501,6 +497,8 @@ namespace Proyecto
             float y = (float)((90 - lat) / 180 * 720);
             return new Vector2(x, y);
         }
+
+
         private void DrawArbolGenealogico(SpriteBatch sb)
         {
             foreach (var persona in _grafo.ListarPersonas())
@@ -513,7 +511,6 @@ namespace Proyecto
                 // Nombre
                 DrawNameTag(sb, persona.Nombre, new Vector2(pos.X - 25, pos.Y - 45), 50);
 
-                ///sb.DrawString(_font, persona.Nombre, pos + new Vector2(30, -5), Color.White);
 
                 // Línea al padre
                 if (persona.Padre != null)

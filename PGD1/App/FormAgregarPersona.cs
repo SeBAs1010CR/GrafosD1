@@ -36,7 +36,7 @@ namespace ProyectoUI
         public Action<Persona> OnGuardar; // callback al guardar
         
 
-        private bool seleccionarEnMapa = false;
+        
 
 
 
@@ -203,7 +203,7 @@ namespace ProyectoUI
 
 
 
-            // Cancelar con C
+            // Ocultar con [/]
             if (kb.IsKeyDown(Keys.OemQuestion)) Ocultar();
 
             _prevKeyboard = kb;
@@ -219,7 +219,7 @@ namespace ProyectoUI
             
 
             // Campos
-            string[] etiquetas = { "Nombre", "Cedula", "F.Nac\n(yyyy-mm-dd)", "F.Def\n(opcional)" , "Latitud", "Longitud", "Madre", "Padre", "Pereja"};
+            string[] etiquetas = { "Nombre", "Cedula", "F.Nac\n(yyyy-mm-dd)", "F.Def\n(opcional)" , "Latitud", "Longitud", "Madre", "Padre", "Pareja"};
             string[] valores = { nombre, cedula, fechaNac, fechaDef, latitud, longitud, nombremadre, nombrepadre, nombrePareja };
 
             for (int i = 0; i < etiquetas.Length; i++)
@@ -254,7 +254,7 @@ namespace ProyectoUI
                 return '-';
             return '\0';
         }
-        private AvatarSelector _avatarSelector;
+        
 
         public void SetUbicacion(double lat, double lon)
         {
